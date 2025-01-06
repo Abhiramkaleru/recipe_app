@@ -39,3 +39,4 @@ Replace the placeholders in the code with your API credentials to make API calls
 Open the index.html file in a web browser to start using the app.
 # Contribution
 Feel free to fork this repository and submit pull requests for any improvements or new features. Contributions are welcome!
+# git depolyment link: https://abhiramkaleru.github.io/recipe_app/home.html
