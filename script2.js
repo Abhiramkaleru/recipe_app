@@ -95,26 +95,29 @@ async function searchrecipe() {
       "<p>There was an error fetching recipes. Please try again later.</p>";
   }
 }
-
-
 // 4. Page Load and Cart Initialization
 window.onload = function () {
   // Check if user is logged in
   let isLoggedIn = window.localStorage.getItem("isLoggedIn");
 
-  if (isLoggedIn !== "true") {
-    fetchFoodCards(); // Display food cards if not logged in
-    document.getElementById("logoutButton").style.display = "none"; // Hide logout button
-  } else {
+  if (isLoggedIn === "true") {
     fetchFoodCards(); // Display food cards if logged in
     document.getElementById("logoutButton").style.display = "inline-block"; // Show logout button
+    document.getElementById("cartLink").style.display = "inline-block"; // Show cart link
+    document.getElementById("cartContainer").style.display = "block"; // Show cart
+  } else {
+    fetchFoodCards(); // Display food cards if not logged in
+    document.getElementById("logoutButton").style.display = "none"; // Hide logout button
+    document.getElementById("cartLink").style.display = "none"; // Hide cart link
+    document.getElementById("cartContainer").style.display = "none"; // Hide cart
   }
 };
 
 
 
+
 // 5. Food Cards Setup
-// Function to display food cards
+// Function to display food cards and allow clicking to search for a recipe
 async function fetchFoodCards() {
   const foodItems = [
     { name: "Chicken", description: "Delicious grilled chicken with spices", imageUrl: "chicken.jpg" },
@@ -127,19 +130,27 @@ async function fetchFoodCards() {
 
   const foodCardsContainer = document.getElementById("dynamic-food-cards");
 
+  // Clear previous content
+  foodCardsContainer.innerHTML = "";
+
   // Generate food cards dynamically
   foodItems.forEach((item) => {
     const foodCard = document.createElement("div");
-    foodCard.classList.add("food-card");    
+    foodCard.classList.add("food-card");
     foodCard.innerHTML = `
       <img src="${item.imageUrl}" alt="${item.name}">
       <h3>${item.name}</h3>
       <p>${item.description}</p>
-      <button onclick="checkLoginAndSearch('${item.name}')">Search for ${item.name} Recipe</button>`;
+      <button onclick="fillSearchAndSearch('${item.name}')">Search for ${item.name} Recipe</button>`;
     foodCardsContainer.appendChild(foodCard);
   });
 }
 
+// Function to fill the search field and perform a search
+function fillSearchAndSearch(foodName) {
+  document.getElementById("searchinput").value = foodName; // Set the search field value
+  searchrecipe(); // Call the search function
+}
 
 
 // 6. Login Check Before Action

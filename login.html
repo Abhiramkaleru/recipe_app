@@ -75,6 +75,7 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
         }
 
         /* Hover effect for button */
@@ -105,6 +106,7 @@
         <input type="text" id="username" name="username" required placeholder="Enter your name" pattern="[A-Za-z0-9]+">
         <input type="password" id="password" name="password" required placeholder="Enter your password">
         <button onclick="handleLogin()">Log In</button>
+        <button onclick="guestLogin()">Login as Guest</button> <!-- Guest Login Button -->
         <hr>
         <p>If you already signed up, then &nbsp;&nbsp;<a href="./signup.html">SignUp</a></p>
     </div>
@@ -123,7 +125,8 @@
             if (validUser) {
                 alert("Login successful!");
                 localStorage.setItem('isLoggedIn', 'true');  // Set login status in localStorage
-                window.location.href = "home.html";  // Redirect to another page after login
+                localStorage.setItem('username', username);  // Store logged-in user
+                window.location.href = "home.html";  // Redirect to home page
             } else {
                 alert("Invalid credentials, please try again.");
             }
@@ -131,6 +134,14 @@
             // Clear the form
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
+        };
+
+        // Guest Login Function
+        const guestLogin = () => {
+            alert("Logged in as Guest!");
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('username', 'Guest'); // Store Guest User
+            window.location.href = "home.html"; // Redirect to home page
         };
     </script>
 
