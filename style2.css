@@ -22,6 +22,35 @@ h1 {
     font-family: 'Playfair Display', serif;
 }
 
+.nav-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  .nav-button {
+    background-color: #ff6600; /* Orange theme */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Ensures the <a> tag looks like a button */
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .nav-button:hover {
+    background-color: #e65c00; /* Darker orange on hover */
+  }
+  
+  .redirect-link {
+    display: inline-block;
+    text-align: center;
+  }
+  
+
 input {
     padding: 3px;
     width: 25%;

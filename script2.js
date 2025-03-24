@@ -95,25 +95,50 @@ async function searchrecipe() {
       "<p>There was an error fetching recipes. Please try again later.</p>";
   }
 }
+// // 4. Page Load and Cart Initialization
+// window.onload = function () {
+//   // Check if user is logged in
+//   let isLoggedIn = window.localStorage.getItem("isLoggedIn");
+
+//   if (isLoggedIn === "true") {
+//     fetchFoodCards(); // Display food cards if logged in
+//     document.getElementById("logoutButton").style.display = "inline-block"; // Show logout button
+//     document.getElementById("cartLink").style.display = "inline-block"; // Show cart link
+//     document.getElementById("cartContainer").style.display = "block"; // Show cart
+//   } else {
+//     fetchFoodCards(); // Display food cards if not logged in
+//     document.getElementById("logoutButton").style.display = "none"; // Hide logout button
+//     document.getElementById("cartLink").style.display = "none"; // Hide cart link
+//     document.getElementById("cartContainer").style.display = "none"; // Hide cart
+//   }
+// };
+
+
 // 4. Page Load and Cart Initialization
 window.onload = function () {
-  // Check if user is logged in
   let isLoggedIn = window.localStorage.getItem("isLoggedIn");
 
   if (isLoggedIn === "true") {
     fetchFoodCards(); // Display food cards if logged in
     document.getElementById("logoutButton").style.display = "inline-block"; // Show logout button
+    document.getElementById("loginButton").style.display = "none"; // Hide login button
     document.getElementById("cartLink").style.display = "inline-block"; // Show cart link
     document.getElementById("cartContainer").style.display = "block"; // Show cart
   } else {
     fetchFoodCards(); // Display food cards if not logged in
     document.getElementById("logoutButton").style.display = "none"; // Hide logout button
+    document.getElementById("loginButton").style.display = "inline-block"; // Show login button
     document.getElementById("cartLink").style.display = "none"; // Hide cart link
     document.getElementById("cartContainer").style.display = "none"; // Hide cart
   }
 };
 
-
+// 7. Logout Button Functionality
+document.getElementById("logoutButton").addEventListener("click", function () {
+  window.localStorage.removeItem("isLoggedIn"); // Remove login status
+  alert("You have been logged out.");
+  window.location.href = "login.html"; // Redirect to login page after logout
+});
 
 
 // 5. Food Cards Setup
