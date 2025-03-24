@@ -1,26 +1,26 @@
 
 // 1. Speech Recognition Setup and Button Event Listener
 // Check if the browser supports SpeechRecognition API
-const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-recognition.lang = "en-US"; // Set language for recognition
+// const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+// recognition.lang = "en-US"; // Set language for recognition
 
-// Event listener for voice button
-document.getElementById("voiceButton").onclick = () => {
-  recognition.start(); // Start listening to the user's voice
-};
+// // Event listener for voice button
+// document.getElementById("voiceButton").onclick = () => {
+//   recognition.start(); // Start listening to the user's voice
+// };
 
-// Handle speech recognition result
-recognition.onresult = (event) => {
-  const voiceQuery = event.results[0][0].transcript; // Get the spoken text
-  document.getElementById("searchinput").value = voiceQuery; // Populate the search input with the voice query
-  searchrecipe(); // Call the search function to perform the recipe search
-};
+// // Handle speech recognition result
+// recognition.onresult = (event) => {
+//   const voiceQuery = event.results[0][0].transcript; // Get the spoken text
+//   document.getElementById("searchinput").value = voiceQuery; // Populate the search input with the voice query
+//   searchrecipe(); // Call the search function to perform the recipe search
+// };
 
-// Handle speech recognition errors
-recognition.onerror = (event) => {
-  console.error("Speech recognition error:", event.error);
-  alert("Sorry, there was an issue with voice recognition.");
-};
+// // Handle speech recognition errors
+// recognition.onerror = (event) => {
+//   console.error("Speech recognition error:", event.error);
+//   alert("Sorry, there was an issue with voice recognition.");
+// };
 
 
 // 2. Add Item to Cart Functionality
@@ -73,23 +73,44 @@ async function searchrecipe() {
     }
 
     // Display fetched recipes
+    // data.hits.forEach((recipe) => {
+    //   const recipeDiv = document.createElement("div");
+    //   recipeDiv.classList.add("recipe");
+
+    //   recipeDiv.innerHTML = `
+    //     <h2>${recipe.recipe.label}</h2>
+    //     <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
+    //     <p>Calories: ${Math.round(recipe.recipe.calories)}</p>
+    //     <p>Servings: ${recipe.recipe.yield}</p>
+    //     <a href="${recipe.recipe.url}" target="_blank">View Recipe</a>
+    //     <button onclick="addToCart('${recipe.recipe.label}', '${recipe.recipe.image}', ${Math.round(recipe.recipe.calories)}, '${recipe.recipe.url}')">
+    //         Add to Cart
+    //     </button>
+    //   `;
+
+    //   recipeContainer.appendChild(recipeDiv);
+    // });
+
     data.hits.forEach((recipe) => {
       const recipeDiv = document.createElement("div");
       recipeDiv.classList.add("recipe");
-
+    
       recipeDiv.innerHTML = `
         <h2>${recipe.recipe.label}</h2>
         <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
         <p>Calories: ${Math.round(recipe.recipe.calories)}</p>
         <p>Servings: ${recipe.recipe.yield}</p>
         <a href="${recipe.recipe.url}" target="_blank">View Recipe</a>
-        <button onclick="addToCart('${recipe.recipe.label}', '${recipe.recipe.image}', ${Math.round(recipe.recipe.calories)}, '${recipe.recipe.url}')">
+        <button class="cart-button" onclick="addToCart('${recipe.recipe.label}', '${recipe.recipe.image}', ${Math.round(recipe.recipe.calories)}, '${recipe.recipe.url}')">
             Add to Cart
         </button>
       `;
-
+    
       recipeContainer.appendChild(recipeDiv);
     });
+    
+
+
   } catch (error) {
     recipeContainer.innerHTML =
       "<p>There was an error fetching recipes. Please try again later.</p>";
