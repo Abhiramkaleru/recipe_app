@@ -1,26 +1,26 @@
 
 // 1. Speech Recognition Setup and Button Event Listener
 // Check if the browser supports SpeechRecognition API
-// const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-// recognition.lang = "en-US"; // Set language for recognition
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = "en-US"; // Set language for recognition
 
-// // Event listener for voice button
-// document.getElementById("voiceButton").onclick = () => {
-//   recognition.start(); // Start listening to the user's voice
-// };
+// Event listener for voice button
+document.getElementById("voiceButton").onclick = () => {
+  recognition.start(); // Start listening to the user's voice
+};
 
-// // Handle speech recognition result
-// recognition.onresult = (event) => {
-//   const voiceQuery = event.results[0][0].transcript; // Get the spoken text
-//   document.getElementById("searchinput").value = voiceQuery; // Populate the search input with the voice query
-//   searchrecipe(); // Call the search function to perform the recipe search
-// };
+// Handle speech recognition result
+recognition.onresult = (event) => {
+  const voiceQuery = event.results[0][0].transcript; // Get the spoken text
+  document.getElementById("searchinput").value = voiceQuery; // Populate the search input with the voice query
+  searchrecipe(); // Call the search function to perform the recipe search
+};
 
-// // Handle speech recognition errors
-// recognition.onerror = (event) => {
-//   console.error("Speech recognition error:", event.error);
-//   alert("Sorry, there was an issue with voice recognition.");
-// };
+// Handle speech recognition errors
+recognition.onerror = (event) => {
+  console.error("Speech recognition error:", event.error);
+  alert("Sorry, there was an issue with voice recognition.");
+};
 
 
 // 2. Add Item to Cart Functionality

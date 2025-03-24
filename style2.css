@@ -42,6 +42,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: background 0.3s ease-in-out;
+    margin-left: 30px;
 }
 
 .nav-button:hover, .redirect-link:hover {
@@ -172,6 +173,7 @@ button {
     background-color: #34495e;
     color: white;
     border: none;
+    display: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
