@@ -59,7 +59,7 @@ async function searchrecipe() {
   }
 
   foodCardsContainer.style.display = "none"; // Hide the food cards
-  backButton.style.display = "inline-block"; // Show the back button when recipes are visible
+  backButton.style.display = "none"; // Show the back button when recipes are visible
 
   try {
     const response = await fetch(
