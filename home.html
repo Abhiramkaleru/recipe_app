@@ -7,20 +7,8 @@
     <link rel="stylesheet" href="style2.css" />
   </head>
   <body>
-
-    <div class="nav-container">
-      <button id="loginButton" class="nav-button" onclick="location.href='login.html'" style="display: inline-block;">
-        Login
-      </button>
-      <button id="logoutButton" class="nav-button" style="display: none;">
-        Logout
-      </button>
-    </div>
-    <a href="./mycart.html" id="cartLink" class="nav-button redirect-link" style="display: none;">My Cart</a>
-    
-
     <div class="container">
-      <h1>KITCHEN STORIES</h1>
+      <h1>Kitchen Stories</h1>
 
       <input type="text" id="searchinput" placeholder="Search for a recipe ..." />
       <button onclick="searchrecipe()">Search</button>
@@ -32,7 +20,13 @@
 
     <!-- Back Button (Initially Hidden) -->
     <button id="backButton" onclick="showDynamicFoodCards()" style="display: none;">
-      back
+      Back
+    </button>
+
+    <a href="./mycart.html" id="cartLink" class="redirect-link" style="display: none;">My Cart</a>
+
+    <button id="logoutButton" style="display: none">
+      Logout
     </button>
 
     <div id="cartContainer" style="display: none;">
